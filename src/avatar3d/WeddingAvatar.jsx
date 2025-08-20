@@ -220,14 +220,18 @@ function WeddingAvatar({ sex, itemsByCategory, config, onConfigChange }) {
 
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
         <ArrowPanel />
-        <div className="relative w-[16rem] h-[22rem] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
-          <img src={baseImage} alt="Base" className="absolute w-full h-full" />
+        <div className="relative w-full max-w-xs sm:max-w-sm md:w-[16rem] md:h-[22rem] aspect-[3/4] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
+          <img
+            src={baseImage}
+            alt="Base"
+            className="absolute w-full h-full object-contain"
+          />
           {layers.map(({ key, url }) => (
             <img
               key={key + url}
               src={url}
               alt=""
-              className="absolute w-full h-full"
+              className="absolute w-full h-full object-contain"
               onError={(e) => (e.currentTarget.style.display = "none")}
             />
           ))}
