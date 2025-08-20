@@ -4,8 +4,8 @@ import PetCustomizer from "./PetCustomizer";
 import ProfessionAvatarPage from "./ProfessionAvatarPage";
 
 import AnimeOutfitAvatarPage from "./AnimeAvatarPage";
-import WeddingAvatars from "./WeddingAvatar";import ProductShowcase from "./ProductShowCase";
-
+import WeddingAvatars from "./WeddingAvatar";
+import ProductShowcase from "./ProductShowCase";
 
 const CustomizerPage = () => {
   const [activeTab, setActiveTab] = useState("showcase");
@@ -37,11 +37,10 @@ const CustomizerPage = () => {
 
   return (
     <>
-
       <div className="min-h-screen bg-gradient-to-br from-[#fbf2e7] to-[#d0e8ff] p-6">
         <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Tabs */}
-          <div className="flex justify-between sm:justify-start overflow-x-auto border-b">
+          <div className="grid grid-cols-2 sm:flex sm:justify-start border-b">
             {tabs.map((tab) => (
               <button
                 key={tab.key}

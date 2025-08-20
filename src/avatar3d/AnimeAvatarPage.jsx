@@ -269,7 +269,7 @@ export default function AnimeOutfitAvatarPage({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Imagen y flechas */}
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
           <ArrowPanel />
           <div className="relative w-[22rem] h-[30rem] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
             <img src={outfit} alt="Base" className="absolute w-full h-full" />
@@ -298,7 +298,7 @@ export default function AnimeOutfitAvatarPage({
                   key={s}
                   className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
                     sex === s
-                  ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
+                      ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
                       : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
                   }`}
                 >

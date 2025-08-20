@@ -48,13 +48,14 @@ const ProductShowcase = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-[#024b61] to-[#006685] py-16 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-b from-[#024b61] to-[#006685] py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        {/* Encabezado */}
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
             COLECCIONES EXCLUSIVAS
           </h2>
-          <p className="mt-4 max-w-2xl text-xl text-gray-300 mx-auto">
+          <p className="mt-4 max-w-2xl text-base sm:text-lg lg:text-xl text-gray-300 mx-auto">
             Cada figura viene con su{" "}
             <span className="text-yellow-400 font-semibold">
               caja coleccionable
@@ -67,29 +68,31 @@ const ProductShowcase = () => {
           </p>
         </div>
 
+        {/* Contenido principal */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Product Image Gallery */}
+          {/* Galería de productos */}
           <div className="relative">
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={products[activeProduct].image}
                 alt={products[activeProduct].name}
                 className="w-full h-full object-cover object-center transition-opacity duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6">
-                <h3 className="text-2xl font-bold text-white">
+              <div className="absolute bottom-0 left-0 p-4 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
                   {products[activeProduct].name}
                 </h3>
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-4 mt-6">
+            {/* Miniaturas */}
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6">
               {products.map((product, index) => (
                 <button
                   key={product.id}
                   onClick={() => setActiveProduct(index)}
-                  className={`relative h-24 rounded-xl overflow-hidden shadow-lg transition-all duration-300 ${
+                  className={`relative h-20 sm:h-24 rounded-xl overflow-hidden shadow-lg transition-all duration-300 ${
                     activeProduct === index
                       ? "ring-4 ring-yellow-400 transform scale-105"
                       : "opacity-80 hover:opacity-100"
@@ -105,11 +108,12 @@ const ProductShowcase = () => {
             </div>
           </div>
 
-          {/* Product Details */}
-          <div className="flex flex-col justify-between">
+          {/* Detalles del producto */}
+          <div className="flex flex-col justify-between mt-6 lg:mt-0">
             <div>
-              <div className="mb-6 p-6 bg-gray-800/50 rounded-xl border border-gray-700">
-                <h3 className="text-lg font-medium text-yellow-400 mb-3">
+              {/* Características */}
+              <div className="mb-6 p-4 sm:p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h3 className="text-base sm:text-lg font-medium text-yellow-400 mb-3">
                   INCLUYE EN TU COMPRA:
                 </h3>
                 <ul className="space-y-2">
@@ -128,17 +132,20 @@ const ProductShowcase = () => {
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
-                      <span className="text-gray-200">{feature}</span>
+                      <span className="text-gray-200 text-sm sm:text-base">
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-700">
-                <h3 className="text-lg font-medium text-yellow-400 mb-3">
+              {/* Descripción */}
+              <div className="p-4 sm:p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                <h3 className="text-base sm:text-lg font-medium text-yellow-400 mb-3">
                   COLECCIÓN PREMIUM
                 </h3>
-                <p className="text-gray-300">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                   Nuestras figuras no son solo juguetes, son piezas de
                   exhibición. Cada una viene con su caja coleccionable de alta
                   calidad y un diorama detallado que transforma tu estante en
@@ -148,10 +155,11 @@ const ProductShowcase = () => {
               </div>
             </div>
 
-            <div className="mt-8">
-              <button className="w-full bg-gradient-to-r from-yellow-500 to-[#ff8f20] hover:from-yellow-600 hover:to-yellow-700 text-gray-900 font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+            {/* Botón de compra */}
+            <div className="mt-6 sm:mt-8">
+              <button className="w-full bg-gradient-to-r from-yellow-500 to-[#ff8f20] hover:from-yellow-600 hover:to-yellow-700 text-gray-900 font-bold py-3 sm:py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 mr-2"
+                  className="w-5 h-5 sm:w-6 sm:h-6 mr-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -165,9 +173,6 @@ const ProductShowcase = () => {
                 </svg>
                 COMPRAR COLECCIÓN {products[activeProduct].name.split(" ")[0]}
               </button>
-              {/* <p className="mt-3 text-center text-gray-400 text-sm">
-                Envíos garantizados en 48h. Pago seguro.
-              </p> */}
             </div>
           </div>
         </div>

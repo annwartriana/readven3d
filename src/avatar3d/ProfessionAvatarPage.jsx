@@ -280,7 +280,7 @@ export default function ProfessionAvatarPage({
         {/* Precio derecho */}
         <div className="text-right mt-6 md:mt-0">
           <div className="flex flex-col items-end">
-          <span className="text-3xl font-bold text-green-600">$79.900</span>
+            <span className="text-3xl font-bold text-green-600">$79.900</span>
             <span className="text-sm text-gray-400 line-through">$89.900</span>
             <span className="mt-1 inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
               11% OFF
@@ -292,7 +292,7 @@ export default function ProfessionAvatarPage({
       {/* Contenido principal en dos columnas */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Columna imagen + flechas */}
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
           {/* Flechas a la izquierda */}
           <div className="flex flex-col gap-6">
             <ArrowPanel />

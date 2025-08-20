@@ -218,7 +218,7 @@ function WeddingAvatar({ sex, itemsByCategory, config, onConfigChange }) {
         {sex === "M" ? "Novio" : "Novia"}
       </h2>
 
-      <div className="flex items-center justify-center gap-4 ">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
         <ArrowPanel />
         <div className="relative w-[16rem] h-[22rem] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
           <img src={baseImage} alt="Base" className="absolute w-full h-full" />
