@@ -1,12 +1,12 @@
 {
   "name": "readven3D",
   "private": true,
-  "homepage":"http://annwartriana/readven3d.github.io",
+  "homepage":"http:/annwartriana.github.io/readven3d",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy":"yarn build",
-    "deploy":"gh-pages -d dist",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
