@@ -261,26 +261,28 @@ export default function ProfessionAvatarPage({
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#a2e7fc] to-[#75d4f0] rounded-xl shadow-xl border border-gray-200 p-8">
-      {/* Cabecera como página de compras mejorada */}
-      <div className="mb-8 rounded-xl p-6 bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between">
+    <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#a2e7fc] to-[#75d4f0] rounded-xl shadow-xl border border-gray-200 p-4 sm:p-8">
+      {/* Cabecera */}
+      <div className="mb-6 sm:mb-8 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between">
         {/* Texto izquierdo */}
         <div>
           <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-2">
             ⭐ Nuevo y exclusivo
           </div>
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight break-words">
             Figura Personalizada Profesión
           </h1>
-          <p className="text-gray-600 mt-1 text-base">
+          <p className="text-gray-600 mt-1 text-sm sm:text-base">
             Diseña tu personaje único con estilo profesional.
           </p>
         </div>
 
         {/* Precio derecho */}
-        <div className="text-right mt-6 md:mt-0">
+        <div className="text-right mt-4 md:mt-0">
           <div className="flex flex-col items-end">
-            <span className="text-3xl font-bold text-green-600">$79.900</span>
+            <span className="text-2xl sm:text-3xl font-bold text-green-600">
+              $79.900
+            </span>
             <span className="text-sm text-gray-400 line-through">$89.900</span>
             <span className="mt-1 inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
               11% OFF
@@ -289,28 +291,55 @@ export default function ProfessionAvatarPage({
         </div>
       </div>
 
+      {/* Selección de sexo → aparece aquí en móviles */}
+      <section className="block md:hidden mb-6 order-2">
+        <label className="block text-sm font-semibold text-gray-700 mb-2">
+          Selección de sexo
+        </label>
+        <div className="flex gap-4">
+          {["M", "W"].map((s) => (
+            <label
+              key={s}
+              className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
+                sex === s
+                  ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
+                  : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
+              }`}
+            >
+              <input
+                type="radio"
+                name="sex"
+                value={s}
+                checked={sex === s}
+                onChange={() => setSex(s)}
+                className="hidden"
+              />
+              {s === "M" ? "Hombre" : "Mujer"}
+            </label>
+          ))}
+        </div>
+      </section>
+
       {/* Contenido principal en dos columnas */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Columna imagen + flechas */}
         <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
-          {/* Flechas a la izquierda */}
           <div className="flex flex-col gap-6">
             <ArrowPanel />
           </div>
 
-          {/* Imagen */}
-          <div className="relative w-[22rem] h-[30rem] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
+          <div className="relative w-full max-w-xs sm:max-w-sm md:w-[22rem] md:h-[30rem] aspect-[3/4] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
             <img
               src={baseImage}
               alt="Base"
-              className="absolute w-full h-full"
+              className="absolute w-full h-full object-contain"
             />
             {layers.map(({ key, url }) => (
               <img
                 key={key + url}
                 src={url}
                 alt=""
-                className="absolute w-full h-full"
+                className="absolute w-full h-full object-contain"
                 onError={(e) => (e.currentTarget.style.display = "none")}
               />
             ))}
@@ -319,8 +348,8 @@ export default function ProfessionAvatarPage({
 
         {/* Columna personalización */}
         <div className="space-y-6">
-          {/* Sexo */}
-          <section>
+          {/* Sexo → visible solo en desktop */}
+          <section className="hidden md:block">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Selección de sexo
             </label>

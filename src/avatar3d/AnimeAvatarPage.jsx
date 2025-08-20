@@ -242,153 +242,183 @@ export default function AnimeOutfitAvatarPage({
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#a2e7fc] to-[#75d4f0] rounded-xl shadow-xl border border-gray-200 p-8">
-      {/* Cabecera */}
-      <div className="mb-8 rounded-xl p-6 bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between">
-        <div>
-          <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-2">
-            ⭐ Nuevo y exclusivo
-          </div>
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-            Figura Personalizada - Personaje
-          </h1>
-          <p className="text-gray-600 mt-1 text-base">
-            Elige tu personaje de anime o serie favorita.
-          </p>
+  <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#a2e7fc] to-[#75d4f0] rounded-xl shadow-xl border border-gray-200 p-8">
+    {/* Cabecera */}
+    <div className="mb-8 rounded-xl p-6 bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between">
+      <div>
+        <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-2">
+          ⭐ Nuevo y exclusivo
         </div>
-        <div className="text-right mt-6 md:mt-0">
-          <div className="flex flex-col items-end">
-            <span className="text-3xl font-bold text-green-600">$79.900</span>
-            <span className="text-sm text-gray-400 line-through">$89.900</span>
-            <span className="mt-1 inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
-              11% OFF
-            </span>
-          </div>
-        </div>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight break-words">
+          Figura Personalizada - Personaje
+        </h1>
+        <p className="text-gray-600 mt-1 text-base">
+          Elige tu personaje de anime o serie favorita.
+        </p>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Imagen y flechas */}
-        <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
-          <ArrowPanel />
-          <div className="relative w-[22rem] h-[30rem] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
-            <img src={outfit} alt="Base" className="absolute w-full h-full" />
-            {layers.map(({ key, url }) => (
-              <img
-                key={key + url}
-                src={url}
-                alt=""
-                className="absolute w-full h-full"
-                onError={(e) => (e.currentTarget.style.display = "none")}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Controles */}
-        <div className="space-y-6">
-          {/* Sexo */}
-          <section>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Selección de sexo
-            </label>
-            <div className="flex gap-4">
-              {["M", "W"].map((s) => (
-                <label
-                  key={s}
-                  className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
-                    sex === s
-                      ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
-                      : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="sex"
-                    value={s}
-                    checked={sex === s}
-                    onChange={() => setSex(s)}
-                    className="hidden"
-                  />
-                  {s === "M" ? "Hombre" : "Mujer"}
-                </label>
-              ))}
-            </div>
-          </section>
-
-          {/* Atuendo */}
-          <section>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Personaje / Atuendo
-            </label>
-            <select
-              value={outfit?.name || ""}
-              onChange={(e) => {
-                const selectedName = e.target.value;
-                const selected =
-                  itemsByCategory.outfits[sex].find(
-                    (o) => o.name === selectedName
-                  ) || null;
-                setOutfit(selected);
-              }}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
-            >
-              <option value="">Sin atuendo</option>
-              {itemsByCategory.outfits[sex].map((o) => (
-                <option key={o.id} value={o.name}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-          </section>
-
-          {/* Color de cabello */}
-          <section>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Color de cabello
-            </label>
-            <div className="flex gap-4">
-              {availableHairColors.map((color) => (
-                <label key={color}>
-                  <input
-                    type="radio"
-                    name="hairColor"
-                    value={color}
-                    checked={hairColor === color}
-                    onChange={() => setHairColor(color)}
-                    className="hidden peer"
-                  />
-                  <div
-                    className={`w-8 h-8 rounded-full border-2 cursor-pointer ${
-                      hairColor === color
-                        ? "border-blue-500 ring-2 ring-blue-300"
-                        : "border-gray-300"
-                    }`}
-                    style={{ backgroundColor: hairColorValues[color] }}
-                    title={hairColorLabels[color]}
-                  />
-                </label>
-              ))}
-            </div>
-          </section>
-
-          {/* Acciones */}
-          <div className="flex gap-4 pt-4 border-t">
-            <button
-              onClick={handleReset}
-              className="flex-1 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200"
-            >
-              Reiniciar
-            </button>
-            <button
-              onClick={handleSave}
-              className="flex-1 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
-            >
-              Añadir al carrito
-            </button>
-          </div>
+      <div className="text-right mt-6 md:mt-0">
+        <div className="flex flex-col items-end">
+          <span className="text-3xl font-bold text-green-600">$79.900</span>
+          <span className="text-sm text-gray-400 line-through">$89.900</span>
+          <span className="mt-1 inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
+            11% OFF
+          </span>
         </div>
       </div>
     </div>
-  );
+
+    {/* Selección de sexo SOLO en móviles (debajo de cabecera) */}
+    <div className="mb-6 block md:hidden">
+      <label className="block text-sm font-semibold text-gray-700 mb-2">
+        Selección de sexo
+      </label>
+      <div className="flex gap-4">
+        {["M", "W"].map((s) => (
+          <label
+            key={s}
+            className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
+              sex === s
+                ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
+                : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
+            }`}
+          >
+            <input
+              type="radio"
+              name="sex"
+              value={s}
+              checked={sex === s}
+              onChange={() => setSex(s)}
+              className="hidden"
+            />
+            {s === "M" ? "Hombre" : "Mujer"}
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Imagen y flechas */}
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
+        <ArrowPanel />
+        <div className="relative w-full max-w-xs sm:max-w-sm md:w-[22rem] md:h-[30rem] aspect-[3/4] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
+          <img src={outfit} alt="Base" className="absolute w-full h-full object-contain" />
+          {layers.map(({ key, url }) => (
+            <img
+              key={key + url}
+              src={url}
+              alt=""
+              className="absolute w-full h-full object-contain"
+              onError={(e) => (e.currentTarget.style.display = "none")}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Controles */}
+      <div className="space-y-6">
+        {/* Selección de sexo SOLO en desktop */}
+        <section className="hidden md:block">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Selección de sexo
+          </label>
+          <div className="flex gap-4">
+            {["M", "W"].map((s) => (
+              <label
+                key={s}
+                className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
+                  sex === s
+                    ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
+                    : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="sex"
+                  value={s}
+                  checked={sex === s}
+                  onChange={() => setSex(s)}
+                  className="hidden"
+                />
+                {s === "M" ? "Hombre" : "Mujer"}
+              </label>
+            ))}
+          </div>
+        </section>
+
+        {/* Atuendo */}
+        <section>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Personaje / Atuendo
+          </label>
+          <select
+            value={outfit?.name || ""}
+            onChange={(e) => {
+              const selectedName = e.target.value;
+              const selected =
+                itemsByCategory.outfits[sex].find(
+                  (o) => o.name === selectedName
+                ) || null;
+              setOutfit(selected);
+            }}
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
+          >
+            <option value="">Sin atuendo</option>
+            {itemsByCategory.outfits[sex].map((o) => (
+              <option key={o.id} value={o.name}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </section>
+
+        {/* Color de cabello */}
+        <section>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Color de cabello
+          </label>
+          <div className="flex gap-4">
+            {availableHairColors.map((color) => (
+              <label key={color}>
+                <input
+                  type="radio"
+                  name="hairColor"
+                  value={color}
+                  checked={hairColor === color}
+                  onChange={() => setHairColor(color)}
+                  className="hidden peer"
+                />
+                <div
+                  className={`w-8 h-8 rounded-full border-2 cursor-pointer ${
+                    hairColor === color
+                      ? "border-blue-500 ring-2 ring-blue-300"
+                      : "border-gray-300"
+                  }`}
+                  style={{ backgroundColor: hairColorValues[color] }}
+                  title={hairColorLabels[color]}
+                />
+              </label>
+            ))}
+          </div>
+        </section>
+
+        {/* Acciones */}
+        <div className="flex gap-4 pt-4 border-t">
+          <button
+            onClick={handleReset}
+            className="flex-1 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200"
+          >
+            Reiniciar
+          </button>
+          <button
+            onClick={handleSave}
+            className="flex-1 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
+          >
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 }
