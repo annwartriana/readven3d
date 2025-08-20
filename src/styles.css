@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+}
+
+[data-theme="hombre"] {
+  --fondo0: #75d4f0;
+  --fondo1: #46abcb;
+  --fondo2: #127795;
+  --fondo3: #006685;
+  --fondo4: #024b61;
+  --fondo5: #a2e7fc;
+
+  --texto1: #7696af;
+  --texto2: #ffffff;
+  --texto3: #70bdf9;
+  --texto4: #000000;
+  --texto5: #36738e;
+  --azul1: #1080e7;
+  --naranja1: #ff8f20;
+  --gradiente1: linear-gradient(to right, #f1f5f9, #1080e7);
+}
+
+[data-theme="mujer"] {
+  --fondo0: #fce7e7;
+  --fondo1: #ffc7c5;
+  --fondo2: #fadedd;
+  --fondo3: #fcafac;
+  --fondo4: #fa9b98;
+  --fondo5: #fce7e7;
+
+  --texto1: #36738e;
+  --texto2: #36738e;
+  --texto3: #30657b;
+  --texto4: #30657b;
+  --texto5: #36738e;
+
+  --azul1: #1080e7;
+  --naranja1: #ff8f20;
+  --gradiente1: linear-gradient(to right, #cdddf4, #ffe9f0);
+}
