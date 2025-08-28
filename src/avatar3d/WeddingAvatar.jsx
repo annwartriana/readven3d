@@ -269,7 +269,8 @@ function WeddingAvatar({ sex, itemsByCategory, config, onConfigChange }) {
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           Color de cabello
         </label>
-        <div className="flex gap-4">
+        {/* CÓDIGO CORREGIDO: se añadió la clase flex-wrap */}
+        <div className="flex flex-wrap gap-4">
           {availableHairColors.map((color) => (
             <label key={color}>
               <input

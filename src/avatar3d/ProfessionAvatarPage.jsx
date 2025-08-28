@@ -302,7 +302,7 @@ export default function ProfessionAvatarPage({
               key={s}
               className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
                 sex === s
-                  ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
+                  ? "bg-[#46abcb] border-blue-500 bg-[#75d4f0] text-white"
                   : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
               }`}
             >
@@ -359,8 +359,8 @@ export default function ProfessionAvatarPage({
                   key={s}
                   className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
                     sex === s
-                      ? "bg-[#46abcb] border-blue-500 bg-blue-50 text-white"
-                      : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
+                      ? "bg-[#46abcb] border-blue-500 bg-[#75d4f0] text-white"
+                      : "bg-[#127795] border-gray-300 hover:bg-[#a2e7fc] text-white"
                   }`}
                 >
                   <input

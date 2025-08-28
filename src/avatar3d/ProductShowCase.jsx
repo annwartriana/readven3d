@@ -7,7 +7,7 @@ const ProductShowcase = () => {
     {
       id: 1,
       name: "Avatar Anime ",
-      image: "/img/avatar_pro.png",
+      image: "/img/Anime.png",
       features: [
         "Figura coleccionable de 10 cm con estilo anime",
         "Incluye caja especial para exhibición",
@@ -17,7 +17,7 @@ const ProductShowcase = () => {
     {
       id: 2,
       name: "Avatar de Profesión",
-      image: "/images/product2.jpg",
+      image: "/img/profesion.png",
       features: [
         "Figura coleccionable de 10 cm con tu profesión favorita",
         "Caja de exhibición",
@@ -27,7 +27,7 @@ const ProductShowcase = () => {
     {
       id: 3,
       name: "Figuras de Matrimonio",
-      image: "/images/product3.jpg",
+      image: "/img/Matrimonio.png",
       features: [
         "Set de 2 figuras personalizadas para pastel de matrimonio",
         "Portarretrato con ilustración 2D conmemorativa",
@@ -37,7 +37,7 @@ const ProductShowcase = () => {
     {
       id: 4,
       name: "Avatar Mascota",
-      image: "/images/product4.jpg",
+      image: "/img/boxer.png",
       features: [
         "Figura coleccionable de tu mascota en 8 cm",
         "Incluye caja especial para exhibición",
@@ -72,11 +72,12 @@ const ProductShowcase = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Galería de productos */}
           <div className="relative">
-            <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl">
+            {/* Contenedor de imagen principal */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-w-4 aspect-h-3">
               <img
                 src={products[activeProduct].image}
                 alt={products[activeProduct].name}
-                className="w-full h-full object-cover object-center transition-opacity duration-500"
+                className="w-full h-96 object-contain object-center transition-opacity duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 p-4 sm:p-6">
@@ -92,7 +93,7 @@ const ProductShowcase = () => {
                 <button
                   key={product.id}
                   onClick={() => setActiveProduct(index)}
-                  className={`relative h-20 sm:h-24 rounded-xl overflow-hidden shadow-lg transition-all duration-300 ${
+                  className={`relative rounded-xl overflow-hidden shadow-lg transition-all duration-300 aspect-w-4 aspect-h-3 ${
                     activeProduct === index
                       ? "ring-4 ring-yellow-400 transform scale-105"
                       : "opacity-80 hover:opacity-100"
@@ -101,7 +102,7 @@ const ProductShowcase = () => {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-20 h-20 object-contain"
                   />
                 </button>
               ))}
