@@ -1,9 +1,11 @@
 import CustomizerPage from "./avatar3d/CustomizerPage"
 
+
 const App = () => {
   return (
    <> 
    <CustomizerPage/>
+
    </>
   )
 }

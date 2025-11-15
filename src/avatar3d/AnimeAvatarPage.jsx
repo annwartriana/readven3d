@@ -32,14 +32,12 @@ const mock = {
       { id: 3, name: "kyojuro", label: "KNY - Kyojuro" },
       { id: 4, name: "tanjiro", label: "KNY - Tanjiro" },
       { id: 5, name: "dbz", label: "DBZ - Goku" },
-      { id: 6, name: "grado", label: "Graduación" },
     ],
     W: [
       { id: 1, name: "DBZ", label: "DBZ Goku" },
       { id: 2, name: "kanao", label: "KNY Kanao" },
       { id: 3, name: "nezuko", label: "KNY Nezuko" },
       { id: 4, name: "shinobu", label: "KNY Shinobu" },
-      { id: 5, name: "grado", label: "Graduación" },
     ],
   },
 };
@@ -258,10 +256,10 @@ export default function AnimeOutfitAvatarPage({
         </div>
         <div className="text-right mt-6 md:mt-0">
           <div className="flex flex-col items-end">
-            <span className="text-3xl font-bold text-green-600">$79.900</span>
-            <span className="text-sm text-gray-400 line-through">$89.900</span>
+            <span className="text-3xl font-bold text-green-600">$64.900</span>
+            <span className="text-sm text-gray-400 line-through">$79.900</span>
             <span className="mt-1 inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
-              11% OFF
+              18% OFF
             </span>
           </div>
         </div>

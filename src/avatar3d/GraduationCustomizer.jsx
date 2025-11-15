@@ -25,32 +25,14 @@ const mock = {
     { id: 0, name: null },
     { id: 1, name: "glasses1" },
   ],
-  profession: {
+  outfits: {
     M: [
-      { id: 1, name: "barber", label: "Barbero" },
-      { id: 2, name: "chef", label: "Chef" },
-      { id: 3, name: "scientist", label: "Científico" },
-      { id: 4, name: "builder", label: "Constructor" },
-      { id: 5, name: "doctor", label: "Doctor" },
-      { id: 6, name: "nurse", label: "Enfermero" },
-      { id: 7, name: "football", label: "Futbolista" },
-      { id: 8, name: "sst", label: "Coordinador SST" },
-      { id: 9, name: "business", label: "Negocios" },
-      { id: 10, name: "teacher", label: "Profesor" },
-      { id: 11, name: "worker", label: "Trabajador" },
-      { id: 12, name: "veterinarian", label: "Veterinario" },
+      { id: 1, name: "male_graduate1", label: "Graduación versión 1" },
+      { id: 2, name: "male_graduate2", label: "Graduación versión 2" },
     ],
     W: [
-      { id: 1, name: "lawyer", label: "Abogada" },
-      { id: 2, name: "chef", label: "Chef" },
-      { id: 3, name: "scientist", label: "Científica" },
-      { id: 4, name: "doctor", label: "Doctora" },
-      { id: 5, name: "nurse", label: "Enfermera" },
-      { id: 6, name: "sst", label: "Coordinadora SST" },
-      { id: 7, name: "business", label: "Negocios" },
-      { id: 8, name: "psychologist", label: "Psicóloga" },
-      { id: 9, name: "teacher", label: "Profesora" },
-      { id: 10, name: "veterinarian", label: "Veterinaria" },
+      { id: 1, name: "female_graduate1", label: "Graduación versión 1" },
+      { id: 2, name: "female_graduate2", label: "Graduación versión 2" },
     ],
   },
 };
@@ -64,17 +46,11 @@ const hairColorLabels = {
 };
 
 const hairColorValues = {
-  blonde: "#f3d27a", // Rubio realista
-  brown: "#8b5a2b", // Marrón natural
-  black: "#1c1c1c", // Negro profundo
-  red: "#b22222", // Rojo
-  white: "#ffffff", // Blanco
-};
-
-const skinToneLabels = {
-  white: "Claro",
-  brown: "Medio",
-  afro: "Oscuro",
+  blonde: "#f3d27a",
+  brown: "#8b5a2b",
+  black: "#1c1c1c",
+  red: "#b22222",
+  white: "#ffffff",
 };
 
 const hairColorsBySex = {
@@ -82,13 +58,12 @@ const hairColorsBySex = {
   W: ["blonde", "brown", "black", "white", "red"],
 };
 
-export default function ProfessionAvatarPage({
+export default function GraduationCustomizer({
   initialSex = "M",
   itemsByCategory = mock,
   onSave = () => {},
 }) {
   const [sex, setSex] = useState(initialSex);
-  const [skinTone, setSkinTone] = useState("white");
   const [hairColor, setHairColor] = useState("black");
 
   // Índices por categoría
@@ -96,14 +71,19 @@ export default function ProfessionAvatarPage({
   const [beardIndex, setBeardIndex] = useState(0);
   const [glassesIndex, setGlassesIndex] = useState(0);
 
-  // Profesión seleccionada (objeto o null)
-  const [profession, setProfession] = useState(null);
+  // Atuendo/personaje seleccionado
+  const [outfit, setOutfit] = useState(null);
 
   const sexPath = sex === "M" ? "man" : "woman";
-  const baseImage = `/avatarImages/${sexPath}/body_${skinTone}.png`;
   const availableHairColors = useMemo(() => hairColorsBySex[sex], [sex]);
 
-  // Ítems con URLs calculadas (no se guardan URLs en estado)
+  // Al montar, seleccionar primer atuendo por defecto
+  useEffect(() => {
+    const firstOutfit = itemsByCategory.outfits[sex]?.[0] || null;
+    setOutfit(firstOutfit);
+  }, []);
+
+  // Ítems con URLs calculadas
   const hairItems = useMemo(() => {
     const src = itemsByCategory.hair || [];
     return src.map((i) => ({
@@ -129,46 +109,39 @@ export default function ProfessionAvatarPage({
     }));
   }, [itemsByCategory.glasses, sexPath]);
 
-  // Profesiones disponibles según sexo
-  const professionItems = useMemo(() => {
-    return itemsByCategory.profession?.[sex] || [];
-  }, [itemsByCategory.profession, sex]);
+  const outfitUrl = useMemo(() => {
+    if (!outfit) return null;
+    return `/avatarImages/${sexPath}/outfits/${outfit.name}.png`;
+  }, [outfit, sexPath]);
 
-  const professionUrl = useMemo(() => {
-    if (!profession) return null;
-    return `/avatarImages/${sexPath}/profession/${profession.name}.png`;
-  }, [profession, sexPath]);
-
-  // Ciclos de índice con envoltura
   const nextIdx = (idx, len) => (len === 0 ? -1 : (idx + 1) % len);
   const prevIdx = (idx, len) =>
     len === 0 ? -1 : idx === -1 ? len - 1 : (idx - 1 + len) % len;
 
-  // Reset total al cambiar sexo (pide el usuario: solo cuerpo base)
+  // Reset al cambiar sexo
   useEffect(() => {
     const allowed = hairColorsBySex[sex];
     if (!allowed.includes(hairColor)) setHairColor(allowed[0]);
-
     setHairIndex(-1);
     setBeardIndex(-1);
     setGlassesIndex(-1);
-    setProfession(null);
+    // Seleccionar el primer atuendo disponible por defecto
+    const firstOutfit = itemsByCategory.outfits[sex]?.[0] || null;
+    setOutfit(firstOutfit);
   }, [sex]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Capas a renderizar (evita imágenes rotas mostrando fallback invisible)
   const layers = useMemo(() => {
     const arr = [];
-    if (professionUrl) arr.push({ key: "profession", url: professionUrl });
+    if (outfitUrl) arr.push({ key: "outfit", url: outfitUrl });
     if (glassesIndex >= 0 && glassesItems[glassesIndex])
       arr.push({ key: "glasses", url: glassesItems[glassesIndex].url });
     if (hairIndex >= 0 && hairItems[hairIndex])
       arr.push({ key: "hair", url: hairItems[hairIndex].url });
     if (sex === "M" && beardIndex >= 0 && beardItems[beardIndex])
       arr.push({ key: "beard", url: beardItems[beardIndex].url });
-
     return arr;
   }, [
-    professionUrl,
+    outfitUrl,
     hairIndex,
     hairItems,
     sex,
@@ -186,21 +159,19 @@ export default function ProfessionAvatarPage({
       equipped.beard = beardItems[beardIndex];
     if (glassesIndex >= 0 && glassesItems[glassesIndex])
       equipped.glasses = glassesItems[glassesIndex];
-    if (profession) equipped.profession = { ...profession, url: professionUrl };
-    onSave({ sex, skinTone, hairColor, equipped });
+    if (outfit) equipped.outfit = { ...outfit, url: outfitUrl };
+    onSave({ sex, hairColor, equipped });
   };
 
   const handleReset = () => {
     setSex(initialSex);
-    setSkinTone("white");
     setHairColor("black");
     setHairIndex(-1);
     setBeardIndex(-1);
     setGlassesIndex(-1);
-    setProfession(null);
+    setOutfit(null);
   };
 
-  // Flechas
   const ArrowPanel = () => {
     const btnBase =
       "px-2 py-1 bg-white/80 rounded-full shadow hover:bg-white transition disabled:opacity-30 w-12 h-12 flex items-center justify-center";
@@ -264,28 +235,23 @@ export default function ProfessionAvatarPage({
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#a2e7fc] to-[#75d4f0] rounded-xl shadow-xl border border-gray-200 p-4 sm:p-8">
+    <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#a2e7fc] to-[#75d4f0] rounded-xl shadow-xl border border-gray-200 p-8">
       {/* Cabecera */}
-      <div className="mb-6 sm:mb-8 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between">
-        {/* Texto izquierdo */}
+      <div className="mb-8 rounded-xl p-6 bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between">
         <div>
           <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full mb-2">
             ⭐ Nuevo y exclusivo
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight break-words">
-            Figura Personalizada Profesión
+            Figura Personalizada - Personaje
           </h1>
-          <p className="text-gray-600 mt-1 text-sm sm:text-base">
-            Diseña tu personaje único con estilo profesional.
+          <p className="text-gray-600 mt-1 text-base">
+            Elige tu personaje de anime o serie favorita.
           </p>
         </div>
-
-        {/* Precio derecho */}
-        <div className="text-right mt-4 md:mt-0">
+        <div className="text-right mt-6 md:mt-0">
           <div className="flex flex-col items-end">
-            <span className="text-2xl sm:text-3xl font-bold text-green-600">
-              $64.900
-            </span>
+            <span className="text-3xl font-bold text-green-600">$64.900</span>
             <span className="text-sm text-gray-400 line-through">$79.900</span>
             <span className="mt-1 inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
               18% OFF
@@ -294,8 +260,8 @@ export default function ProfessionAvatarPage({
         </div>
       </div>
 
-      {/* Selección de sexo → aparece aquí en móviles */}
-      <section className="block md:hidden mb-6 order-2">
+      {/* Selección de sexo SOLO en móviles (debajo de cabecera) */}
+      <div className="mb-6 block md:hidden">
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           Selección de sexo
         </label>
@@ -321,19 +287,15 @@ export default function ProfessionAvatarPage({
             </label>
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* Contenido principal en dos columnas */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Columna imagen + flechas */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Imagen y flechas */}
         <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4">
-          <div className="flex flex-col gap-6">
-            <ArrowPanel />
-          </div>
-
+          <ArrowPanel />
           <div className="relative w-full max-w-xs sm:max-w-sm md:w-[22rem] md:h-[30rem] aspect-[3/4] bg-gray-50 border rounded-lg flex items-center justify-center shadow-inner overflow-hidden">
             <img
-              src={baseImage}
+              src={outfit}
               alt="Base"
               className="absolute w-full h-full object-contain"
             />
@@ -349,9 +311,9 @@ export default function ProfessionAvatarPage({
           </div>
         </div>
 
-        {/* Columna personalización */}
+        {/* Controles */}
         <div className="space-y-6">
-          {/* Sexo → visible solo en desktop */}
+          {/* Selección de sexo SOLO en desktop */}
           <section className="hidden md:block">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Selección de sexo
@@ -363,7 +325,7 @@ export default function ProfessionAvatarPage({
                   className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
                     sex === s
                       ? "bg-[#46abcb] border-blue-500 bg-[#75d4f0] text-white"
-                      : "bg-[#127795] border-gray-300 hover:bg-[#a2e7fc] text-white"
+                      : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
                   }`}
                 >
                   <input
@@ -380,53 +342,29 @@ export default function ProfessionAvatarPage({
             </div>
           </section>
 
-          {/* Profesión */}
+          {/* Atuendo */}
           <section>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Profesión
+              Personaje / Atuendo
             </label>
             <select
-              value={profession?.name || ""}
+              value={outfit?.name || ""}
               onChange={(e) => {
                 const selectedName = e.target.value;
                 const selected =
-                  professionItems.find((p) => p.name === selectedName) || null;
-                setProfession(selected);
+                  itemsByCategory.outfits[sex].find(
+                    (o) => o.name === selectedName
+                  ) || null;
+                setOutfit(selected);
               }}
               className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
             >
-              <option value="">Sin profesión</option>
-              {professionItems.map((prof) => (
-                <option key={prof.id} value={prof.name}>
-                  {prof.label}
+              {itemsByCategory.outfits[sex].map((o) => (
+                <option key={o.id} value={o.name}>
+                  {o.label}
                 </option>
               ))}
             </select>
-          </section>
-
-          {/* Tono de piel */}
-          <section>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Tono de piel
-            </label>
-            <div className="flex gap-4">
-              {[
-                { tone: "white", color: "#f9dcc4" },
-                { tone: "brown", color: "#c58c5c" },
-                { tone: "afro", color: "#5c3b28" },
-              ].map(({ tone, color }) => (
-                <button
-                  key={tone}
-                  onClick={() => setSkinTone(tone)}
-                  className={`w-8 h-8 rounded-full border-2 transition ${
-                    skinTone === tone
-                      ? "border-blue-500 scale-110"
-                      : "border-gray-300 hover:scale-105"
-                  }`}
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-            </div>
           </section>
 
           {/* Color de cabello */}

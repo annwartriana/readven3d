@@ -6,6 +6,9 @@ import ProfessionAvatarPage from "./ProfessionAvatarPage";
 import AnimeOutfitAvatarPage from "./AnimeAvatarPage";
 import WeddingAvatars from "./WeddingAvatar";
 import ProductShowcase from "./ProductShowCase";
+import GraduationCustomizer from "./GraduationCustomizer";
+import VideoGameCustomizer from "./VideoGameCustomizer";
+
 
 const CustomizerPage = () => {
   const [activeTab, setActiveTab] = useState("showcase");
@@ -13,7 +16,9 @@ const CustomizerPage = () => {
   const tabs = [
     { key: "showcase", label: "Presentación", icon: <Gem size={18} /> },
     { key: "professions", label: "Profesiones", icon: <Briefcase size={18} /> },
-    { key: "anime", label: "Anime y otros", icon: <Sparkles size={18} /> },
+    { key: "graduation", label: "Graduación", icon: <Sparkles size={18} /> },
+    { key: "anime", label: "Anime", icon: <Sparkles size={18} /> },
+    { key: "videogames", label: "Video Juegos", icon: <Sparkles size={18} /> },
     { key: "wedding", label: "Matrimonio", icon: <Heart size={18} /> },
     { key: "pets", label: "Mascotas", icon: <PawPrint size={18} /> },
   ];
@@ -24,6 +29,10 @@ const CustomizerPage = () => {
         return <ProductShowcase />;
       case "anime":
         return <AnimeOutfitAvatarPage />;
+      case "graduation":
+        return <GraduationCustomizer/>;
+      case "videogames":
+        return <VideoGameCustomizer />;
       case "professions":
         return <ProfessionAvatarPage />;
       case "wedding":
