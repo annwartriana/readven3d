@@ -38,6 +38,8 @@ const mock = {
       { id: 2, name: "kanao", label: "KNY Kanao" },
       { id: 3, name: "nezuko", label: "KNY Nezuko" },
       { id: 4, name: "shinobu", label: "KNY Shinobu" },
+      { id: 5, name: "female_hogwarts", label: "Estudiante Hogwarts" },
+      { id: 6, name: "female_mikasa", label: "Mikasa Ackerman" },
     ],
   },
 };

@@ -10,8 +10,8 @@ const ProductShowcase = () => {
       image: "/img/Anime.png",
       features: [
         "Figura coleccionable de 10 cm con estilo anime",
-        "Incluye caja especial para exhibición",
-        "Mini maqueta de escenario personalizada",
+        "Incluye marco especial o domo para exhibición",
+        "Accesorios decorativos",
       ],
     },
     {
@@ -20,8 +20,8 @@ const ProductShowcase = () => {
       image: "/img/profesion.png",
       features: [
         "Figura coleccionable de 10 cm con tu profesión favorita",
-        "Caja de exhibición",
-        "Maqueta temática de oficina para acompañar la figura",
+        "Incluye marco especial o domo para exhibición",
+        "Accesorios decorativos",
       ],
     },
     {
@@ -31,7 +31,7 @@ const ProductShowcase = () => {
       features: [
         "Set de 2 figuras personalizadas para pastel de matrimonio",
         "Portarretrato con ilustración 2D conmemorativa",
-        "Cajas coleccionables individuales para cada figura",
+        "Accesorios decorativos",
       ],
     },
     {
@@ -40,9 +40,8 @@ const ProductShowcase = () => {
       image: "/img/boxer.png",
       features: [
         "Figura coleccionable de tu mascota en 8 cm",
-        "Incluye caja especial para exhibición",
-        "Mini maqueta inspirada en la naturaleza",
-        "Portarretrato con ilustración 2D de tu mascota",
+        "Incluye marco especial o domo para exhibición",
+        "Accesorios decorativos",
       ],
     },
   ];
@@ -56,15 +55,10 @@ const ProductShowcase = () => {
             COLECCIONES EXCLUSIVAS
           </h2>
           <p className="mt-4 max-w-2xl text-base sm:text-lg lg:text-xl text-gray-300 mx-auto">
-            Cada figura viene con su{" "}
-            <span className="text-yellow-400 font-semibold">
-              caja coleccionable
-            </span>{" "}
-            y un{" "}
-            <span className="text-yellow-400 font-semibold">
-              escenario diorama
-            </span>{" "}
-            para exhibición.
+            Cada figura viene con un{" "}
+            <span className="text-yellow-400 font-semibold">marco</span> o un{" "}
+            <span className="text-yellow-400 font-semibold">domo</span> para
+            exhibición.
           </p>
         </div>
 
