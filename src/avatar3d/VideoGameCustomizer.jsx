@@ -12,6 +12,7 @@ const mock = {
     { id: 6, name: "hair6" },
     { id: 7, name: "hair7" },
     { id: 8, name: "hair8" },
+    { id: 9, name: "hair9" },
   ],
   beard: [
     { id: 0, name: null },
@@ -20,6 +21,7 @@ const mock = {
     { id: 3, name: "beard3" },
     { id: 4, name: "beard4" },
     { id: 5, name: "beard5" },
+    { id: 6, name: "beard6" },
   ],
   glasses: [
     { id: 0, name: null },
@@ -28,13 +30,12 @@ const mock = {
   outfits: {
     M: [
       { id: 1, name: "male_halo", label: "Chief Master" },
-      { id: 2, name: "male_warcraft", label: "Warcraft Lich King"},  
-      { id: 2, name: "male_gow", label: "Gears of War Soldier"},  
+      { id: 2, name: "male_warcraft", label: "Warcraft Lich King" },
+      { id: 2, name: "male_gow", label: "Gears of War Soldier" },
     ],
     W: [
       //   { id: 1, name: "female_graduate1", label: "Graduación versión 1" },
-      // { id: 2, name: "female_graduate2", label: "Graduación versión 2"},  
-
+      // { id: 2, name: "female_graduate2", label: "Graduación versión 2"},
     ],
   },
 };
@@ -361,7 +362,6 @@ export default function VideoGameCustomizer({
               }}
               className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
             >
-             
               {itemsByCategory.outfits[sex].map((o) => (
                 <option key={o.id} value={o.name}>
                   {o.label}

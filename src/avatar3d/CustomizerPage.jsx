@@ -16,9 +16,9 @@ const CustomizerPage = () => {
   const tabs = [
     { key: "showcase", label: "Presentación", icon: <Gem size={18} /> },
     { key: "professions", label: "Profesiones", icon: <Briefcase size={18} /> },
-    { key: "graduation", label: "Graduación", icon: <Sparkles size={18} /> },
+    { key: "graduation", label: "Grados y Deportes", icon: <Sparkles size={18} /> },
     { key: "anime", label: "Anime y TV", icon: <Sparkles size={18} /> },
-    { key: "videogames", label: "Video Juegos", icon: <Sparkles size={18} /> },
+    { key: "videogames", label: "Videojuegos", icon: <Sparkles size={18} /> },
     { key: "wedding", label: "Matrimonio", icon: <Heart size={18} /> },
     { key: "pets", label: "Mascotas", icon: <PawPrint size={18} /> },
   ];

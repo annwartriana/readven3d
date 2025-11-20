@@ -12,6 +12,7 @@ const mock = {
     { id: 6, name: "hair6" },
     { id: 7, name: "hair7" },
     { id: 8, name: "hair8" },
+    { id: 9, name: "hair9" },
   ],
   beard: [
     { id: 0, name: null },
@@ -20,6 +21,7 @@ const mock = {
     { id: 3, name: "beard3" },
     { id: 4, name: "beard4" },
     { id: 5, name: "beard5" },
+    { id: 6, name: "beard6" },
   ],
   glasses: [
     { id: 0, name: null },
@@ -29,10 +31,16 @@ const mock = {
     M: [
       { id: 1, name: "male_graduate1", label: "Graduación versión 1" },
       { id: 2, name: "male_graduate2", label: "Graduación versión 2" },
+      { id: 3, name: "male_futbol", label: "Futbolista" },
+      { id: 4, name: "male_gym", label: "Gimnasio" },
     ],
     W: [
       { id: 1, name: "female_graduate1", label: "Graduación versión 1" },
       { id: 2, name: "female_graduate2", label: "Graduación versión 2" },
+      { id: 3, name: "female_karate", label: "Karate" },
+      { id: 4, name: "female_exercise", label: "Running - Gimnasio" },
+      { id: 5, name: "female_skater", label: "Patinadora" },
+      { id: 6, name: "female_voleyball", label: "Volleyball" },
     ],
   },
 };

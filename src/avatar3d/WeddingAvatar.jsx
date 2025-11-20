@@ -11,6 +11,7 @@ const mock = {
     { id: 6, name: "hair6" },
     { id: 7, name: "hair7" },
     { id: 8, name: "hair8" },
+    { id: 9, name: "hair9" },
   ],
   beard: [
     { id: 0, name: null },
@@ -19,6 +20,7 @@ const mock = {
     { id: 3, name: "beard3" },
     { id: 4, name: "beard4" },
     { id: 5, name: "beard5" },
+    { id: 6, name: "beard6" },
   ],
   glasses: [
     { id: 0, name: null },
