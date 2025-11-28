@@ -45,14 +45,14 @@ const mock = {
     W: [
       { id: 1, name: "lawyer", label: "Abogada" },
       { id: 2, name: "chef", label: "Chef" },
-      { id: 3, name: "scientist", label: "Científica" },
       { id: 4, name: "doctor", label: "Doctora" },
       { id: 5, name: "nurse", label: "Enfermera" },
       { id: 6, name: "sst", label: "Coordinadora SST" },
       { id: 7, name: "business", label: "Negocios" },
       { id: 8, name: "psychologist", label: "Psicóloga" },
-      { id: 9, name: "teacher", label: "Profesora" },
-      { id: 10, name: "veterinarian", label: "Veterinaria" },
+      { id: 9, name: "psychologistv2", label: "Psicóloga V2" },
+      { id: 10, name: "teacher", label: "Profesora" },
+      { id: 11, name: "veterinarian", label: "Veterinaria" },
     ],
   },
 };
