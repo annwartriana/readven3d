@@ -63,7 +63,7 @@ const CustomizerPage = () => {
           <div className="flex items-center gap-3">      
 
             <img
-              src="/src/assets/logo/LogoReadvenLateral.svg"  
+              src="/logo/LogoReadvenLateral.svg"  
               alt="Readven"
               className="h-7 object-contain"
             />
