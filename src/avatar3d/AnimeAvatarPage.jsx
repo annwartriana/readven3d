@@ -29,14 +29,16 @@ const mock = {
   ],
   outfits: {
     M: [
-      { id: 1, name: "akatsuki", label: "Naruto - Akatsuki" },
-      { id: 2, name: "jounin", label: "Naruto - Konoha Jounin" },
-      { id: 3, name: "kyojuro", label: "KNY - Kyojuro" },
-      { id: 4, name: "tanjiro", label: "KNY - Tanjiro" },
-      { id: 5, name: "dbz", label: "DBZ - Goku" },
+      { id: 1, name: "dbz", label: "DBZ - Goku" },
+      { id: 2, name: "male_JJK", label: "Jujutsu Kaisen" },
+      { id: 3, name: "akatsuki", label: "Naruto - Akatsuki" },
+      { id: 4, name: "jounin", label: "Naruto - Konoha Jounin" },
+      { id: 5, name: "kyojuro", label: "KNY - Kyojuro" },
+      { id: 6, name: "tanjiro", label: "KNY - Tanjiro" },
     ],
     W: [
       { id: 1, name: "DBZ", label: "DBZ Goku" },
+      { id: 2, name: "female_JJK", label: "Jujutsu Kaisen" },
       { id: 2, name: "kanao", label: "KNY Kanao" },
       { id: 3, name: "nezuko", label: "KNY Nezuko" },
       { id: 4, name: "shinobu", label: "KNY Shinobu" },
