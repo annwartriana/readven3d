@@ -272,6 +272,7 @@ export default function AnimeOutfitAvatarPage({
       </div>
 
       {/* Selección de sexo SOLO en móviles (debajo de cabecera) */}
+      {/* Selección de sexo SOLO en móviles (debajo de cabecera) */}
       <div className="mb-6 block md:hidden">
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           Selección de sexo
@@ -282,7 +283,7 @@ export default function AnimeOutfitAvatarPage({
               key={s}
               className={`flex-1 text-center px-4 py-2 border rounded-lg cursor-pointer ${
                 sex === s
-                  ? "bg-[#46abcb] border-blue-500 bg-[#75d4f0] text-white"
+                  ? "bg-[#75d4f0] border-blue-500 text-white"
                   : "bg-[#127795] border-gray-300 hover:bg-gray-50 text-white"
               }`}
             >
@@ -298,6 +299,31 @@ export default function AnimeOutfitAvatarPage({
             </label>
           ))}
         </div>
+      </div>
+
+      {/* 🔥 Atuendo SOLO en móviles – ubicado después de selección de sexo */}
+      <div className="mb-6 block md:hidden">
+        <label className="block text-sm font-semibold text-gray-700 mb-2">
+          Personaje / Atuendo
+        </label>
+        <select
+          value={outfit?.name || ""}
+          onChange={(e) => {
+            const selectedName = e.target.value;
+            const selected =
+              itemsByCategory.outfits[sex].find(
+                (o) => o.name === selectedName
+              ) || null;
+            setOutfit(selected);
+          }}
+          className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
+        >
+          {itemsByCategory.outfits[sex].map((o) => (
+            <option key={o.id} value={o.name}>
+              {o.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -353,8 +379,8 @@ export default function AnimeOutfitAvatarPage({
             </div>
           </section>
 
-          {/* Atuendo */}
-          <section>
+          {/* Atuendo SOLO en desktop */}
+          <section className="hidden md:block">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Personaje / Atuendo
             </label>
@@ -370,7 +396,6 @@ export default function AnimeOutfitAvatarPage({
               }}
               className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
             >
-              <option value="">Sin atuendo</option>
               {itemsByCategory.outfits[sex].map((o) => (
                 <option key={o.id} value={o.name}>
                   {o.label}

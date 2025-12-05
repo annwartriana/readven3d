@@ -160,11 +160,11 @@ export default function ProfessionAvatarPage({
   // Capas a renderizar (evita imágenes rotas mostrando fallback invisible)
   const layers = useMemo(() => {
     const arr = [];
-    if (professionUrl) arr.push({ key: "profession", url: professionUrl });
     if (glassesIndex >= 0 && glassesItems[glassesIndex])
       arr.push({ key: "glasses", url: glassesItems[glassesIndex].url });
     if (hairIndex >= 0 && hairItems[hairIndex])
       arr.push({ key: "hair", url: hairItems[hairIndex].url });
+    if (professionUrl) arr.push({ key: "profession", url: professionUrl });
     if (sex === "M" && beardIndex >= 0 && beardItems[beardIndex])
       arr.push({ key: "beard", url: beardItems[beardIndex].url });
 
@@ -296,7 +296,7 @@ export default function ProfessionAvatarPage({
         </div>
       </div>
 
-      {/* Selección de sexo → aparece aquí en móviles */}
+      {/* Selección de sexo Móviles */}
       <section className="block md:hidden mb-6 order-2">
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           Selección de sexo
@@ -323,6 +323,30 @@ export default function ProfessionAvatarPage({
             </label>
           ))}
         </div>
+      </section>
+
+      {/* Profesión en móviles */}
+      <section className="block md:hidden mb-6">
+        <label className="block text-sm font-semibold text-gray-700 mb-2">
+          Profesión
+        </label>
+        <select
+          value={profession?.name || ""}
+          onChange={(e) => {
+            const selectedName = e.target.value;
+            const selected =
+              professionItems.find((p) => p.name === selectedName) || null;
+            setProfession(selected);
+          }}
+          className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
+        >
+          <option value="">Sin profesión</option>
+          {professionItems.map((prof) => (
+            <option key={prof.id} value={prof.name}>
+              {prof.label}
+            </option>
+          ))}
+        </select>
       </section>
 
       {/* Contenido principal en dos columnas */}
@@ -383,7 +407,7 @@ export default function ProfessionAvatarPage({
           </section>
 
           {/* Profesión */}
-          <section>
+          <section className="hidden md:block">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Profesión
             </label>
@@ -469,12 +493,12 @@ export default function ProfessionAvatarPage({
             >
               Reiniciar
             </button>
-            <button
+            {/* <button
               onClick={handleSave}
               className="flex-1 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
             >
               Añadir al carrito
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

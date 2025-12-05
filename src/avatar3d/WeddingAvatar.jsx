@@ -394,12 +394,12 @@ export default function WeddingAvatars() {
         />
       </div>
       <div className="flex justify-center mt-8">
-        <button
+        {/* <button
           onClick={handleSave}
           className="px-8 py-3 rounded-lg bg-green-600 text-white text-lg font-bold hover:bg-green-700 transition"
         >
           Guardar Figuras
-        </button>
+        </button> */}
       </div>
     </div>
   );
