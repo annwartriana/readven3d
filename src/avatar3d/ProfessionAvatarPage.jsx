@@ -39,8 +39,9 @@ const mock = {
       { id: 9, name: "sst", label: "Coordinador SST" },
       { id: 10, name: "business", label: "Negocios" },
       { id: 11, name: "teacher", label: "Profesor" },
-      { id: 12, name: "worker", label: "Trabajador" },
-      { id: 13, name: "veterinarian", label: "Veterinario" },
+      { id: 12, name: "police", label: "Policía" },
+      { id: 13, name: "worker", label: "Trabajador" },
+      { id: 14, name: "veterinarian", label: "Veterinario" },
     ],
     W: [
       { id: 1, name: "lawyer", label: "Abogada" },
