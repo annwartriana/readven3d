@@ -7,6 +7,7 @@ import {
   Gem,
   Instagram,
   Music,
+  MessageCircle,
 } from "lucide-react";
 
 import PetCustomizer from "./PetCustomizer";
@@ -60,10 +61,9 @@ const CustomizerPage = () => {
       <header className="w-full bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between py-3 px-5">
           {/* Logo + Marca */}
-          <div className="flex items-center gap-3">      
-
+          <div className="flex items-center gap-3">
             <img
-              src="/logo/LogoReadvenLateral.svg"  
+              src="/logo/LogoReadvenLateral.svg"
               alt="Readven"
               className="h-7 object-contain"
             />
@@ -71,6 +71,14 @@ const CustomizerPage = () => {
 
           {/* Redes sociales */}
           <div className="flex items-center gap-4">
+            <a
+              href="https://wa.me/573143292411"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-green-500 text-white shadow hover:scale-105 transition transform"
+            >
+              <MessageCircle size={20} />
+            </a>
             <a
               href="https://www.instagram.com/readvenofficial/"
               target="_blank"
